@@ -9,6 +9,7 @@ iface eth1 inet static
     address 10.0.10.2
     netmask 255.255.255.0
 
+#up ip route add 10.0.2.0/24 via 10.0.2.1 dev eth0
 up ip route add 10.0.0.0/24 via 10.0.10.1
 up ip route add 10.0.1.0/24 via 10.0.10.1
 
