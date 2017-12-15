@@ -1,0 +1,44 @@
+modify /etc/quagga/daemons  marking with yes zebra and ospfd
+cp a config file for both from /usr/share/doc/quagga/examples
+chown quagga.quaggavty /etc/quagga/*.conf
+chmod 640 /etc/quagga/*.conf
+/etc/init.d/quagga  start
+
+command to create sub-dirs
+
+mkdir etc && cd etc && mkdir network && mkdir quagga && cp /home/dinies/Dropbox/1UNIVERSITY/1Sapienza/NI/netkit_labs/lab_ospf/r1/etc/network/interfaces ./network/interfaces && cp /home/dinies/Dropbox/1UNIVERSITY/1Sapienza/NI/netkit_labs/lab_ospf/r1/etc/quagga/* ./quagga/ && cd ../..
+
+mkdir etc && cd etc && mkdir network  && cp /home/dinies/Dropbox/1UNIVERSITY/1Sapienza/NI/netkit_labs/lab_ospf/r1/etc/network/interfaces ./network/interfaces && cd ../..
+
+
+
+test commands:
+//ping from pc1 to s
+ping 192.168.2.100 //failed only one hop : check gateway router
+//ping from r3 to r8
+ping 10.0.1.14 //success
+ping 10.0.2.3  //success
+
+//problem with r7
+
+//it seems that there is no need to divide in sub areas ( all backbone )
+the problem was that area 1.1.1.1 was splitted and then only the first piece in which worked r1 was receiving ospf informations and the other in which there was r7 was completely isolated.
+
+
+//connect to daemons zebra and ospf
+// telnet localhost zebra
+telnet localhost 2601
+//ospf
+telnet localhost 2604
+
+//examples of commands
+//inside daemon zebra
+show ip route
+//inside daemon ospf
+show ip ospf interface
+//maybe  ... router ospf
+
+//error in ospf.conf of r7, ip addresses of eth1 and eth2 starting by 1. instead of 10.
+//error in ospf.conf of r1 the sub area specification was 1.1.1.1 for all the onterfaces instead of 0.0.0.0
+
+//in oder to force a path we need to modify the costs of the eth interfaces
