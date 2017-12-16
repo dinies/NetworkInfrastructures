@@ -1,0 +1,2 @@
+echo "ciao" >> ciccio.txt
+echo "ciao"
