@@ -1,1 +1,8 @@
 /etc/init.d/bind start
+
+if [ -e /hostlab/id_rsa.pub ]
+then
+	rm /hostlab/id_rsa.pub
+else 
+	sleep 1
+fi
