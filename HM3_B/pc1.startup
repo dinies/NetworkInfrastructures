@@ -1,8 +1,0 @@
-echo "30.0.1.4	r7" >> /etc/hosts
-echo "30.0.1.8	r8" >> /etc/hosts
-echo "30.0.1.10	r9" >> /etc/hosts
-echo "192.168.1.1	r10" >> /etc/hosts
-
-echo -e '\n\n\n' | ssh-keygen
-pwd
-cp /root/.ssh/id_rsa.pub /hostlab
